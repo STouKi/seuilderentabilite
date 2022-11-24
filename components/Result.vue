@@ -9,6 +9,10 @@
       value: {
         type: Number,
         required: true
+      },
+      color: {
+        type: String,
+        required: false
       }
     }
   }
@@ -21,7 +25,8 @@
     <input
     disabled
     type="number" 
-    class="border border-blue-300 rounded p-2"
+    class="rounded p-2"
+    :class="{ 'bg-green-300': color === 'green', 'border border-blue-300': color !== 'green' }"
     :value="value" />
   </div>
 </template>

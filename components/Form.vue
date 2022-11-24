@@ -10,8 +10,8 @@
 </script>
 
 <template>
-  <form class="rounded border border-cyan-500">
-    <div class="p-6 bg-gradient-to-r from-cyan-500 to-blue-500">
+  <form class="bg-white rounded-0 md:rounded shadow">
+    <div class="p-3 md:p-6 bg-gradient rounded-0 md:rounded-t">
       <h2 class="text-white">{{ title }}</h2>
     </div>
     

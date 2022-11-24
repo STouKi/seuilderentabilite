@@ -1,9 +1,19 @@
+html {
+	background: #ECE9E6;
+	background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+	background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+}
+
 * {
 	font-family: "Lato", serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Raleway', sans-serif;
+}
+
+.formula {
+	font-family: 'Patrick Hand', sans-serif;
 }
 
 
@@ -13,17 +23,8 @@ h1, h2, h3, h4, h5, h6 {
 	background: $gradient;
 }
 
-
-// Srollbar
-
-::-webkit-scrollbar {
-	width: .60rem;
-	background: white;
-}
-
-::-webkit-scrollbar-thumb {
-	border-radius: .5rem;
-	@apply bg-gradient-to-b from-cyan-500 to-blue-500
+.bg-board {
+	background: $board;
 }
 
 
