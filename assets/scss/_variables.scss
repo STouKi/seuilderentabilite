@@ -1,0 +1,9 @@
+// Colors //
+
+// SCSS
+$gradient: linear-gradient(to bottom, hsla(151, 72%, 53%, 0.2), hsla(0, 0%, 100%, 0.9));
+
+// CSS
+:root {
+	--gradient: linear-gradient(to right, hsla(151, 72%, 53%, 0.2), hsla(0, 0%, 100%, 0.9));
+}

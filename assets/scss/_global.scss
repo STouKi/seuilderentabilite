@@ -1,0 +1,42 @@
+* {
+	font-family: "Lato", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', sans-serif;
+}
+
+
+// Color
+
+.bg-gradient {
+	background: $gradient;
+}
+
+
+// Srollbar
+
+::-webkit-scrollbar {
+	width: .60rem;
+	background: white;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: .5rem;
+	@apply bg-gradient-to-b from-cyan-500 to-blue-500
+}
+
+
+input {
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&::-o-inner-spin-button {
+		-o-appearance: none;
+		margin: 0;
+	}
+}
