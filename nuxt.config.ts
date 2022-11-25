@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     ['@nuxtjs/google-fonts', { 
@@ -26,7 +27,7 @@ export default defineNuxtConfig({
         },
         "Patrick+Hand": true
       },
-    }]
+    }],
   ],
   css: ['@/assets/scss/style.scss'],
   vite: {

@@ -15,7 +15,13 @@
 
 
 <template>
-  <div class="mb-4 md:mb-10 px-3 md:px-7 py-3 md:py-6 bg-board ring-1 ring-gray-900/5 rounded-0 md:rounded-lg leading-none space-x-6 mx-auto">    
-    <p class="formula text-center text-white text-2xl md:text-3xl">{{ equation }}</p>
+  <div 
+  class="bg-board rounded"
+  :class="{ 'p-2': size === 'small', 'px-3 lg:px-7 py-3 lg:py-6': size !== 'small' }">
+    <p 
+    class="formula text-center text-white"
+    :class="{ 'text-sm': size === 'small', 'text-xl lg:text-3xl': size !== 'small' }"
+    v-html="equation">
+    </p>
   </div>
 </template>
