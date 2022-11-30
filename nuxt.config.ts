@@ -20,6 +20,11 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+    ['@nuxtjs/web-vitals', {
+      debug: false,
+      disabled: false,
+      ga: { id: 'G-3XMNMKRK08' }
+    }],
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
