@@ -3,7 +3,7 @@
    props: {
       size: {
         type: String,
-        required: true
+        required: false
       },
       equation: {
         type: String,

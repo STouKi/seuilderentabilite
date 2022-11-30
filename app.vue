@@ -75,7 +75,7 @@
         :label="`Votre ${ breakEvenPoint.text } est de`"
         :value="breakEvenPoint.value" />
 
-        <Button />
+        <!-- <Button /> -->
       </form>
     </div>
 
@@ -133,7 +133,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div class="hidden lg:block" />
       <div class="hidden lg:block" />
-      <Button />
+      <!-- <Button /> -->
     </div>
   </div>
 </template>
