@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'fr'
+      },
       title: 'Calcul du seuil de rentabilité',
       meta: [
         { charset: 'utf-8' },

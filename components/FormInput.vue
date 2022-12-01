@@ -8,6 +8,10 @@
       label: {
         type: String,
         required: true
+      },
+      id: {
+        type: String,
+        required: true
       }
     },
     emits: ['update:modelValue']
@@ -16,9 +20,10 @@
 
 <template>
   <div class="flex flex-col w-full">
-    <label>{{ label }}</label>
+    <label :for="id">{{ label }}</label>
     
-    <input 
+    <input
+    :id="id"
     :type="type" 
     class="border border-blue-300 rounded p-2"
     @input="$emit('update:modelValue', $event.target.value)" />

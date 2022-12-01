@@ -4,14 +4,17 @@
       return {
         form: {
           turnover: {
+            id: 'turnover',
             text: 'Chiffre d\'Affaires',
             value: 0
           },
           fixedExpenses: {
+            id: 'fixedExpenses',
             text: 'Charges Fixes',
             value: 0
           },
           variableCosts: {
+            id: 'variableCosts',
             text: 'Charges Variables',
             value: 0
           }
@@ -56,16 +59,19 @@
 
       <form class="grid grid-cols-1 lg:grid-cols-3 place-items-end gap-4">
         <FormInput
+        :id="form.turnover.id"
         type='number'
         :label="form.turnover.text"
         v-model.trim="form.turnover.value" />
 
         <FormInput
+        :id="form.fixedExpenses.id"
         type='number'
         :label="form.fixedExpenses.text"
         v-model.trim="form.fixedExpenses.value" />
 
         <FormInput
+        :id="form.variableCosts.id"
         type='number'
         :label="form.variableCosts.text"
         v-model.trim="form.variableCosts.value" />
