@@ -19,15 +19,23 @@ export default defineNuxtConfig({
           "data-auto-block": "on",
           "data-website-uuid": "d38f7354-5dc6-4dc6-bb3a-96a85f57d3ac"
         },
+				{
+					src: "https://www.googletagmanager.com/gtag/js?id=G-3XMNMKRK08"
+				},
+				{
+					children: `
+						window.dataLayer = window.dataLayer || [];
+						
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+
+						gtag('config', 'G-3XMNMKRK08');
+					`
+				}
       ]  
     }
   },
   modules: [
-    ['@nuxtjs/web-vitals', {
-      debug: false,
-      disabled: false,
-      ga: { id: 'G-3XMNMKRK08' }
-    }],
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
