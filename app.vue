@@ -50,7 +50,7 @@
 
 <template>
   <div class="container mx-auto p-4 lg:p-10 flex flex-col gap-10">
-    <Header />
+    <TheHeader />
 
     <Formula equation="Seuil de rentabilité = Charges fixes / Taux de marge sur coûts variables" />
 
@@ -136,10 +136,12 @@
       </Form>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div class="hidden lg:block" />
       <div class="hidden lg:block" />
-      <!-- <Button /> -->
-    </div>
+      <Button />
+    </div> -->
+
+		<TheFooter />
   </div>
 </template>
