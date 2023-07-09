@@ -1,5 +1,5 @@
 <template>
 	<footer>
-		<p class="text-right">© 2022 - Seuil de Rentabilité</p>
+		<p class="text-right">© 2023 - Seuil de Rentabilité</p>
 	</footer>
 </template>

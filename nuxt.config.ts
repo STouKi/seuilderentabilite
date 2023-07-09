@@ -36,6 +36,8 @@ export default defineNuxtConfig({
     }
   },
   modules: [
+		'nuxt-simple-sitemap',
+		'nuxt-simple-robots',
     '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',

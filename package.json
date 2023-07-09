@@ -15,6 +15,8 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
     "nuxt-icon": "^0.1.7",
+    "nuxt-simple-robots": "^3.0.1",
+    "nuxt-simple-sitemap": "^3.0.8",
     "sass": "^1.56.1"
   }
 }
