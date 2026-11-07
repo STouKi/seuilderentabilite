@@ -1,0 +1,30 @@
+# Mises à jour regroupées : une seule PR par mois pour les dépendances, une seule
+# pour les correctifs de sécurité, au lieu d'une PR (et d'une notification) par paquet.
+version: 2
+
+updates:
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ":arrow_up: chore"
+      include: scope
+    groups:
+      dependances:
+        applies-to: version-updates
+        patterns: ["*"]
+      securite:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ":construction_worker: ci"
+      include: scope
+    groups:
+      actions:
+        patterns: ["*"]
