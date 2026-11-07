@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+/*
+ * Jetons de design. Les couleurs sont sémantiques (page, surface, encre...) et
+ * redéfinies plus bas pour le mode sombre : les composants n'ont jamais besoin
+ * de variantes `dark:`.
+ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-chalk: "Patrick Hand", "Segoe Print", "Comic Sans MS", cursive;
+
+  --color-page: #f6f5f1;
+  --color-surface: #ffffff;
+  --color-sunken: #f1efe9;
+  --color-ink: #121619;
+  --color-ink-2: #4a5257;
+  --color-ink-3: #5f686d;
+  --color-line: #e3e1da;
+  --color-field: #868e93;
+
+  --color-brand: #0a6e8a;
+  --color-brand-strong: #075a71;
+  --color-brand-soft: #e3f1f5;
+  --color-on-brand: #ffffff;
+
+  --color-good: #166f30;
+  --color-good-soft: #e7f4ea;
+  --color-bad: #b8322a;
+  --color-bad-soft: #fbeae8;
+  --color-warn: #7a4f00;
+  --color-warn-soft: #fbf1d9;
+
+  /* Tableau noir des formules : identique dans les deux modes. */
+  --color-board: #23292c;
+  --color-board-edge: #343d41;
+  --color-chalk: #f3f1ea;
+  --color-chalk-2: #b9c2be;
+  --color-chalk-mint: #7ff0cf;
+  --color-chalk-yellow: #ffe08a;
+
+  /* Graphique : palette validée (séparation daltonisme et contraste) en clair et en sombre. */
+  --color-series-revenue: #0b84a5;
+  --color-series-costs: #eb6834;
+  --color-zone-profit: #0ca30c;
+  --color-zone-loss: #d03b3b;
+  --color-chart-grid: #e6e4dd;
+  --color-chart-axis: #b9b8ad;
+
+  --color-grid-paper: rgb(10 110 138 / 0.08);
+
+  --shadow-card: 0 1px 2px rgb(18 22 25 / 0.04), 0 8px 24px -12px rgb(18 22 25 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #0e1214;
+    --color-surface: #161b1e;
+    --color-sunken: #11161a;
+    --color-ink: #e8eced;
+    --color-ink-2: #b4bdc0;
+    --color-ink-3: #8d979b;
+    --color-line: #263034;
+    --color-field: #5f6a6f;
+
+    --color-brand: #5cc8e0;
+    --color-brand-strong: #7fd3e6;
+    --color-brand-soft: #0f2a31;
+    --color-on-brand: #04161b;
+
+    --color-good: #4fd17a;
+    --color-good-soft: #10291b;
+    --color-bad: #ff7b72;
+    --color-bad-soft: #341614;
+    --color-warn: #f2c14e;
+    --color-warn-soft: #2e2410;
+
+    --color-board: #1d2326;
+    --color-board-edge: #2f383c;
+
+    --color-series-revenue: #22a3c4;
+    --color-series-costs: #d95926;
+    --color-chart-grid: #232b2f;
+    --color-chart-axis: #3b464b;
+
+    --color-grid-paper: rgb(92 200 224 / 0.05);
+
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    accent-color: var(--color-brand);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  [id] {
+    scroll-margin-top: 1.5rem;
+  }
+
+  :where(a, button, input, select, summary, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-brand) 28%, transparent);
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Quadrillage « petits carreaux » de cahier, estompé vers le bas. */
+  .notebook-grid {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .notebook-grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--color-grid-paper) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid-paper) 1px, transparent 1px);
+    background-size: 1.5rem 1.5rem;
+    background-position: center top;
+    mask-image: linear-gradient(to bottom, black 35%, transparent);
+    pointer-events: none;
+  }
+
+  /* Tableau noir des formules. */
+  .chalkboard {
+    position: relative;
+    color: var(--color-chalk);
+    font-family: var(--font-chalk);
+    background-color: var(--color-board);
+    background-image:
+      radial-gradient(120% 90% at 15% 0%, rgb(255 255 255 / 0.07), transparent 60%),
+      radial-gradient(80% 60% at 100% 100%, rgb(127 240 207 / 0.05), transparent 70%);
+    border: 1px solid var(--color-board-edge);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), inset 0 -12px 24px -12px rgb(0 0 0 / 0.35);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 150ms, border-color 150ms, color 150ms, transform 150ms;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary {
+    background-color: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-brand-strong);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-surface);
+    border-color: var(--color-field);
+    color: var(--color-ink);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-sunken);
+  }
+
+  .btn-ghost {
+    color: var(--color-ink-2);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--color-sunken);
+    color: var(--color-ink);
+  }
+
+  /* Texte éditorial des sections explicatives. */
+  .prose-content {
+    color: var(--color-ink-2);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose-content > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Réservé aux textes longs : sur une aide de deux lignes, l'effet raccourcit les lignes. */
+  .prose-content p,
+  .prose-content li,
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .prose-content strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .prose-content a {
+    color: var(--color-brand);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .prose-content a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .prose-content ul {
+    display: grid;
+    gap: 0.5rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .prose-content li::marker {
+    color: var(--color-brand);
+  }
+}
+
+@media (forced-colors: active) {
+  .chalkboard,
+  .card {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Export PDF : la page s'imprime comme un rapport de simulation sur fond blanc. */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  :root {
+    color-scheme: light;
+    --color-page: #ffffff;
+    --color-surface: #ffffff;
+    --color-sunken: #f4f4f2;
+    --color-ink: #111111;
+    --color-ink-2: #333333;
+    --color-ink-3: #555555;
+    --color-line: #cfcfcf;
+    --color-brand: #0a6e8a;
+    --color-good: #166f30;
+    --color-good-soft: #ffffff;
+    --color-bad: #b8322a;
+    --color-bad-soft: #ffffff;
+    --color-warn: #7a4f00;
+    --color-warn-soft: #ffffff;
+    --color-series-revenue: #0b84a5;
+    --color-series-costs: #eb6834;
+    --color-chart-grid: #e2e2e2;
+    --color-chart-axis: #9a9a9a;
+    --shadow-card: none;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .card {
+    border-radius: 0.5rem;
+    break-inside: avoid;
+  }
+
+  .notebook-grid::before {
+    display: none;
+  }
+
+  /* Le tableau noir devient une encre sombre sur fond blanc pour rester lisible. */
+  .chalkboard {
+    color: #111111;
+    background: #ffffff;
+    border-color: #9a9a9a;
+    box-shadow: none;
+  }
+
+  .chalkboard * {
+    color: #111111 !important;
+    border-color: #111111 !important;
+  }
+}
