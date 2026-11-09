@@ -1,3 +1,20 @@
+<script setup lang="ts">
+// Mesure d'audience Vercel Web Analytics : sans cookie, donc sans bandeau de consentement.
+// Les montants d'une simulation partagée vivent dans l'ancre de l'URL (#ca=...) :
+// on la retire avant chaque envoi pour qu'ils restent privés.
+if (useRuntimeConfig().public.vercelAnalytics) {
+  useHead({
+    script: [
+      {
+        innerHTML: 'window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};'
+          + 'window.va("beforeSend",function(e){var u=new URL(e.url);u.hash="";return Object.assign({},e,{url:u.href})});',
+      },
+      { src: '/_vercel/insights/script.js', defer: true },
+    ],
+  })
+}
+</script>
+
 <template>
   <div class="flex min-h-dvh flex-col">
     <a

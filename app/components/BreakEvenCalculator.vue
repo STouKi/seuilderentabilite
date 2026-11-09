@@ -182,7 +182,8 @@ function prefersReducedMotion() {
 }
 
 // En-tête du rapport imprimé : l'adresse du site accompagne chaque PDF partagé.
-const siteHost = new URL(useRuntimeConfig().public.siteUrl).host
+const { siteUrl } = useRuntimeConfig().public
+const siteHost = URL.canParse(siteUrl) ? new URL(siteUrl).host : 'seuil-de-rentabilite.vercel.app'
 // Date calculée côté navigateur pour éviter tout décalage d'hydratation.
 const printedOn = ref('')
 onMounted(() => {

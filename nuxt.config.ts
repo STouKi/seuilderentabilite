@@ -25,9 +25,12 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
+  // Lues au pré-rendu : surchargeables par NUXT_PUBLIC_SITE_URL et
+  // NUXT_PUBLIC_VERCEL_ANALYTICS dans les variables d'environnement de Vercel.
   runtimeConfig: {
     public: {
       siteUrl,
+      vercelAnalytics: Boolean(process.env.VERCEL),
     },
   },
 
@@ -46,19 +49,6 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
       ],
-      script: process.env.VERCEL
-        // Mesure d'audience Vercel Web Analytics : sans cookie, donc sans bandeau de
-        // consentement. Le script n'est servi que sur les déploiements Vercel.
-        ? [
-            {
-              // Les montants d'une simulation partagée vivent dans l'ancre de l'URL
-              // (#ca=...) : on la retire avant chaque envoi pour qu'ils restent privés.
-              innerHTML: 'window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};'
-                + 'window.va("beforeSend",function(e){var u=new URL(e.url);u.hash="";return Object.assign({},e,{url:u.href})});',
-            },
-            { src: '/_vercel/insights/script.js', defer: true },
-          ]
-        : [],
     },
   },
 
